@@ -1,0 +1,36 @@
+<!-- TEMPORAIRE : test du ToastService -->
+<button type="button" class="m-4 rounded bg-green-600 px-4 py-2 font-bold text-white" (click)="toast.succes('Test')">
+    Tester le toast
+</button>
+
+<app-carrousel />
+
+<!-- Bannière d'accueil -->
+<section class="bg-gradient-to-br from-brand-900 to-brand-500 px-4 py-20 text-center text-white">
+    <h1 class="text-4xl font-bold md:text-5xl">Bienvenue à BiblioCampus</h1>
+    <p class="mx-auto mt-4 max-w-xl text-lg opacity-90">Votre bibliothèque universitaire en ligne.</p>
+    <a routerLink="/catalogue" class="mt-8 inline-block rounded-full bg-white px-8 py-3 font-bold text-brand-900 shadow transition hover:-translate-y-1 hover:shadow-xl">
+        Explorer le catalogue
+    </a>
+</section>
+<!-- Statistiques : 2 colonnes sur mobile, 4 à partir de md -->
+<section class="bg-white py-12 dark:bg-slate-900">
+    <div class="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-4 md:grid-cols-4">
+        @for (s of stats; track s.libelle) {
+        <app-carte-stat [valeur]="s.valeur" [libelle]="s.libelle" />
+        }
+    </div>
+</section>
+<!-- À propos -->
+<section class="mx-auto flex max-w-6xl flex-col items-center gap-10 px-4 py-16 md:flex-row">
+    <div class="flex-1">
+        <h2 class="text-3xl font-bold text-brand-900 dark:text-white">Notre mission</h2>
+        <p class="mt-4 leading-relaxed">BiblioCampus met à votre disposition une vaste collection d’ouvrages,
+            accessibles
+            en ligne et sur place, pour accompagner vos études et votre curiosité.</p>
+        <a routerLink="/inscription" class="mt-6 inline-block rounded-full bg-brand-500 px-7 py-3 font-bold text-white hover:bg-brand-900">
+            Devenir membre
+        </a>
+    </div>
+    <img src="/images/hero-bibliotheque.jpg" alt="Bibliothèque" class="w-full max-w-md rounded-lg shadow-xl" />
+</section>

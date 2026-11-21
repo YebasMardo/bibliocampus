@@ -1,0 +1,32 @@
+<header class="sticky top-0 z-50 bg-brand-900 shadow-lg dark:bg-slate-900">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2">
+        <a routerLink="/" class="flex items-center gap-2 text-lg font-bold text-white">
+            <img src="/images/logo.png" alt="[B]" class="h-9 w-auto shrink-0 rounded-md object-contain" />
+            BiblioCampus
+        </a>
+        <ul class="items-center gap-2" [class]="menuOuvert()
+            ? 'absolute right-4 top-14 flex flex-col rounded-lg bg-brand-900 p-2 shadow-xl md:static md:flex-row md:p-0 md:shadow-none dark:bg-slate-900'
+            : 'hidden md:flex'">
+            @for (lien of liens; track lien.chemin) {
+            <li>
+                <a [routerLink]="lien.chemin" routerLinkActive="bg-brand-500 text-white"
+                    [routerLinkActiveOptions]="{ exact: lien.chemin === '/' }"
+                    class="rounded-lg px-4 py-2 text-slate-300 transition hover:bg-brand-500 hover:text-white">
+                    {{ lien.libelle }}
+                </a>
+            </li>
+            }
+        </ul>
+        <div class="flex items-center gap-2">
+            <!-- Bascule thème clair / sombre -->
+            <button type="button" (click)="basculerTheme()" [attr.aria-pressed]="sombre()"
+                [attr.aria-label]="sombre() ? 'Activer le thème clair' : 'Activer le thème sombre'"
+                class="rounded-full px-3 py-1.5 text-white hover:bg-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+                {{ sombre() ? '☀️' : '🌙' }}
+            </button>
+            <!-- Bouton hamburger : visible sous le breakpoint md -->
+            <button type="button" class="text-white md:hidden" aria-label="Ouvrir le menu"
+                [attr.aria-expanded]="menuOuvert()" (click)="basculerMenu()">☰</button>
+        </div>
+    </nav>
+</header>

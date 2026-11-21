@@ -1,0 +1,9 @@
+<div class="fixed bottom-4 right-4 z-[100] flex w-80 flex-col gap-2" aria-live="polite">
+    @for (t of service.toasts(); track t.id) {
+    <div role="status" class="flex items-start justify-between rounded-lg px-4 py-3 text-white shadow-lg"
+        [class]="t.type === 'succes' ? 'bg-green-600' : 'bg-red-600'">
+        <span>{{ t.type === 'succes' ? '✅' : '⚠️' }} {{ t.texte }}</span>
+        <button type="button" class="ml-3 font-bold" aria-label="Fermer" (click)="service.fermer(t.id)">×</button>
+    </div>
+    }
+</div>

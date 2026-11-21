@@ -1,0 +1,17 @@
+<section class="relative h-72 overflow-hidden bg-brand-900 md:h-[28rem]" aria-roledescription="carrousel">
+    <img [src]="courante().image" [alt]="courante().titre" class="h-full w-full object-cover opacity-70" />
+    <div class="absolute inset-0 flex flex-col items-center justify-center px-4 text-center text-white">
+        <h2 class="text-3xl font-bold md:text-5xl">{{ courante().titre }}</h2>
+        <p class="mt-3 text-lg md:text-xl">{{ courante().texte }}</p>
+    </div>
+    <button type="button" (click)="precedente()" aria-label="Diapositive précédente"
+        class="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-black/40 px-3 py-2 text-white hover:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">‹</button>
+    <button type="button" (click)="suivante()" aria-label="Diapositive suivante"
+        class="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-black/40 px-3 py-2 text-white hover:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">›</button>
+    <div class="absolute bottom-3 flex w-full justify-center gap-2">
+        @for (d of diapos; track d.image; let i = $index) {
+        <button type="button" (click)="aller(i)" [attr.aria-label]="'Aller à la diapositive ' + (i + 1)"
+            class="h-2.5 w-2.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/50" [class]="i === index() ? 'bg-white' : 'bg-white/50'"></button>
+        }
+    </div>
+</section>
